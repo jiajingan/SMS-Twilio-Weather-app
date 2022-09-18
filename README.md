@@ -1,5 +1,5 @@
 # SMS-Twilio-Weather-app
-Built a sms weather app using twilio, openweathermap, python, flask, ngrok\n
+Built a sms weather app using twilio, openweathermap, python, flask, ngrok<br>
 To build this app you will need
 - a phone number from twilio (need to purchase it)
 - following python packages(I used pipenv to install)
