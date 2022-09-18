@@ -17,7 +17,7 @@ python3 src/main.py
 
 # Publicly Host Application 
 ```
-ngrok http 8008
+ngrok http 8080
 ```
 - Your port number may be different, please check flask app.
 # Add webhook to twilio
