@@ -9,13 +9,13 @@ load_dotenv()
 app = Flask(__name__)
 
 # # Your Account SID from twilio.com/console
-# account_sid = os.getenv('sid')
+account_sid = os.getenv('sid')
 # # Your Auth Token from twilio.com/console
-# auth_token  = os.getenv('twilio_token')
+auth_token  = os.getenv('twilio_token')
 
 # # Your twilio number
 
-# client = Client(account_sid, auth_token)
+client = Client(account_sid, auth_token)
 
 # message = client.messages.create(
 #     to=os.getenv('to_number'), 
@@ -25,7 +25,14 @@ app = Flask(__name__)
 # print(message.sid)
 weather_api_key = os.getenv('weather_key')
 base_url = "http://api.openweathermap.org/data/2.5/weather?"
-
+# def automatedText(message,time,weatherSMS):
+#     if('-a' in message):
+#         message = client.messages.create(
+#             to=os.getenv('to_number'), 
+#             from_=os.getenv('from_number'),
+#             body=weatherSMS)
+    
+    
 
 def replyMessage(message):
     message = message.lower().strip()
