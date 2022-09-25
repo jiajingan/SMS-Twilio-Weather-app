@@ -4,14 +4,15 @@ from flask import Flask, request
 from twilio.twiml.messaging_response import MessagingResponse
 import os
 import requests, json
-load_dotenv()
+import datetime
 
+load_dotenv()
 app = Flask(__name__)
 
 # # Your Account SID from twilio.com/console
 account_sid = os.getenv('sid')
 # # Your Auth Token from twilio.com/console
-auth_token  = os.getenv('twilio_token')
+auth_token = os.getenv('twilio_token')
 
 # # Your twilio number
 
@@ -22,17 +23,29 @@ client = Client(account_sid, auth_token)
 #     from_=os.getenv('from_number'),
 #     body="Hello from Python!")
 
-# print(message.sid)
+# implement a boolean checker for automated messages
+# implement an int limit checker for exceeding 3 fail messages
+
+# what do I need for weather api
+automate = {
+    "location": "philadelphia",
+    "time": "07:00:00",
+    "checker": True
+}
+
 weather_api_key = os.getenv('weather_key')
 base_url = "http://api.openweathermap.org/data/2.5/weather?"
-# def automatedText(message,time,weatherSMS):
-#     if('-a' in message):
-#         message = client.messages.create(
-#             to=os.getenv('to_number'), 
-#             from_=os.getenv('from_number'),
-#             body=weatherSMS)
-    
-    
+
+
+def automatedText(automate, weatherSMS):
+    time = datetime.datetime.now().strftime("%H:%M:%S")
+    if (automate["checker"] == True and automate["time"] == time):
+        message = client.messages.create(
+            to=os.getenv('to_number'),
+            from_=os.getenv('from_number'),
+            body=weatherSMS)
+    return message
+
 
 def replyMessage(message):
     message = message.lower().strip()
